@@ -1,0 +1,46 @@
+one
+javac *.java
+rmic AddServerImpl
+rmiregistry
+
+java AddServer
+
+java AddClient 127.0.0.1 4 5
+
+
+two
+idlj -fall ReverseModule.idl
+javac *.java ReverseModule/*.java
+orbd -ORBInitialPort 1050&
+java ReverseServer -ORBInitialPort 1050& -ORBInitialHost localhost&
+-ORBInitialHost
+
+java ReverseClient -ORBInitialPort 1050 -ORBInitialHost localhost
+
+
+three
+sudo apt install build-essential
+mpicc mpi.c -o mpi
+./mpi
+
+set Path=%Path%;<MPI_INSTALL_PATH>\bin
+mpicc -o mpi_hello mpi_hello.c
+mpicxx -o mpi_hello mpi_hello.cpp
+
+mpiexec -n <num_processes> mpi_hello
+
+four
+javac BerkeleyAlgorithm.java
+java BerkeleyAlgorithm
+
+
+five
+javac TokenRing.java
+java TokenRing
+
+six
+javac Bully.java
+java Bully
+
+java Ring.java
+java Ring
